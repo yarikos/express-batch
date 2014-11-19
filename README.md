@@ -60,7 +60,6 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 ## Limitations
 
 * Supports only routes for GET requests.
-* Headers passing wasn't tested.
 * Handlers which will bу used beyon the middleware, could use only these methods of response:
   - `res.json()`
   - `res.jsonp()`
@@ -79,7 +78,6 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 
 
 ## Todo
-- Tests for routes with headers using
 - Returning headers in batch results
 - Support of rest of HTTP methods
 - Support of rest of `response` methods
