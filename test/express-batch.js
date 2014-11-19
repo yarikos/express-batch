@@ -141,7 +141,6 @@ describe("request to route for express-batch", function () {
         });
     });
 
-
     describe("with specified path to endpoint, which uses res.end method", function () {
         it("should return result and status for this endpoint", function (done) {
             app.get("/api/timestamp", function apiTimestampHandler(req, res) {
@@ -159,7 +158,6 @@ describe("request to route for express-batch", function () {
                 .expect(200, done);
         });
     });
-
 
     describe("with specified path to endpoint, which uses res.sendFile method", function () {
         it("should return error status for this endpoint since it isn't supported", function (done) {

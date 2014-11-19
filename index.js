@@ -1,24 +1,18 @@
 var
-
-    debug = require('debug')('express:batch:middleware'),
-
     FakeRequest = require('./lib/FakeRequest'),
     FakeResponse = require('./lib/FakeResponse'),
 
     undefined;
-
 
 module.exports = function (app) {
 
     return function (req, res, next) {
 
         var
-            results = {
-            },
-
+            results = {},
             requests = req.query,
             requestCount = Object.keys(requests).length,
-            cnt = 0,
+            finishedRequests = 0,
             undefined;
 
         if (requestCount === 0) {
@@ -27,24 +21,15 @@ module.exports = function (app) {
         }
 
         for (var key in requests) {
-            var request = requests[key];
+            results[key] = {};
 
-            var fakeReq = new FakeRequest(request, req.headers),
-                fakeRes = new FakeResponse(key);
+            var request = requests[key],
+                fakeReq = new FakeRequest(request, req.headers),
+                fakeRes = new FakeResponse(results[key]);
 
-            fakeRes.once('end', function () {
-                //@todo how about require('on-finished') using
-                // don't leak listeners
-                fakeRes.removeAllListeners();
-                done(null, fakeRes);
-            });
+            fakeRes.once('end', done);
 
-            fakeRes.once('error', function (err) {
-                fakeRes.removeAllListeners();
-                done(err, fakeRes);
-            });
-
-            app(fakeReq, fakeRes, finalHandler(fakeRes)); //@todo probably could be refactored
+            app(fakeReq, fakeRes, finalHandler(fakeRes));
         }
 
         function finalHandler(fakeRes) {
@@ -56,10 +41,9 @@ module.exports = function (app) {
             }
         }
 
-        function done(err, fakeRes) {
-            results[fakeRes.expressBatchKey] = fakeRes.getResults();
-            if (++cnt == requestCount) {
-                res.jsonp(results)
+        function done() {
+            if (++finishedRequests >= requestCount) {
+                res.jsonp(results);
             }
         }
     }

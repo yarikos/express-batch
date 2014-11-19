@@ -1,33 +1,32 @@
 {
-  "name": "express-batch",
-  "version": "0.0.0",
-  "description": "Middleware, which allow you to perform batch requests to your express.js powered API.",
-  "main": "express-batch.js",
-  "scripts": {
-    "test": "node_modules/.bin/mocha  --reporter spec --bail --growl -w --check-leaks test/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yarikos/express-batch.git"
-  },
-  "keywords": [
-    "express",
-    "expressjs",
-    "batch",
-    "api"
-  ],
-  "author": "https://github.com/yarikos",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/yarikos/express-batch/issues"
-  },
-  "dependencies": {
-    "debug": "^2.1.0"
-  },
-  "devDependencies": {
-    "express": "^4.10.2",
-    "mocha": "^2.0.1",
-    "should": "^4.3.0",
-    "supertest": "^0.15.0"
-  }
+    "name": "express-batch",
+    "version": "0.0.0",
+    "description": "Middleware, which allow you to perform batch requests to your express.js powered API.",
+    "main": "express-batch.js",
+    "scripts": {
+        "test": "node_modules/.bin/mocha  --reporter spec --bail --growl -w --check-leaks test/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yarikos/express-batch.git"
+    },
+    "keywords": [
+        "express",
+        "expressjs",
+        "batch",
+        "api"
+    ],
+    "author": "https://github.com/yarikos",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/yarikos/express-batch/issues"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "express": "4.x",
+        "mocha": "2.x",
+        "should": "4.x",
+        "supertest": "0.15"
+    }
 }
