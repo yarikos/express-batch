@@ -5,6 +5,7 @@ express-batch
 ## Description
 
 Express middleware, which allow to perform batch requests.
+
 It parses requested routes, tries to invoke handler for each route and returns all results in one response.
 
 
@@ -33,7 +34,7 @@ app.get("/api/users/:id", function apiUserHandler(req, res) {
 app.listen(3000);
 ```
 
-With this example request to  `http://localhost:3000/api/batch?users=/api/users/49&pi=api/constants/pi&nonexistent=/not/existent/route` will return
+With this example request to  `http://localhost:3000/api/batch?users=/api/users/49&pi=api/constants/pi&nonexistent=/not/existent/route` will return:
 
 ```js
 {
@@ -58,30 +59,30 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 
 ## Limitations
 
-    - Supports only routes for GET requests.
-    - Headers passing wasn't tested.
-    - Handlers which will bу used beyon the middleware, could use only these methods of response:
-        - `res.json()`
-        - `res.jsonp()
-        - `res.jsonp()`
-        - `res.end()`
-        - `res.status()`
-        - `res.sendStatus()`
-        - `res.sendStatus()`
-        -  assign value to `res.statusCode` 
+* Supports only routes for GET requests.
+* Headers passing wasn't tested.
+* Handlers which will bу used beyon the middleware, could use only these methods of response:
+  - `res.json()`
+  - `res.jsonp()`
+  - `res.jsonp()`
+  - `res.end()`
+  - `res.status()`
+  - `res.sendStatus()`
+  - `res.sendStatus()`
+  -  assign value to `res.statusCode` 
     
 ## Notes
 
- There are similar packages, but which work via using real http requests
-    - [sonofabatch](https://www.npmjs.org/package/sonofabatch)   
-    - [batch-endpoint](https://www.npmjs.org/package/batch-endpoint)
+ There are similar packages, but which work via using real http requests:
+- [sonofabatch](https://www.npmjs.org/package/sonofabatch)   
+- [batch-endpoint](https://www.npmjs.org/package/batch-endpoint)
 
 
 ## Todo
-    - Tests for routes with headers using
-    - Returning headers in batch results
-    - Support of rest of HTTP methods
-    - Support of rest of `response` methods
+- Tests for routes with headers using
+- Returning headers in batch results
+- Support of rest of HTTP methods
+- Support of rest of `response` methods
    
    
 ## License
