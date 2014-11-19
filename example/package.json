@@ -1,0 +1,7 @@
+{
+  "description": "Example of express-batch usage.",
+  "dependencies": {
+    "express": "^4.x",
+    "express-batch": "*"
+  }
+}
