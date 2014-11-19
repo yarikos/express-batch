@@ -220,6 +220,31 @@ describe("request to route for express-batch", function () {
         });
     });
 
+    describe("with specified path to endpoint, which used headers from request", function () {
+        it("should return only status for this endpoint", function (done) {
+            app.get("/api/user/:id", function apiUserHandler(req, res) {
+                res.json({
+                    id: req.params.id,
+                    token: req.headers.token
+                });
+            });
+
+            request(app)
+                .get("/api/batch?timestamp=/api/user/457")
+                .set('token', 'secretToken')
+                .expect({
+                    timestamp: {
+                        status: 200,
+                        result: {
+                            id: 457,
+                            token: 'secretToken'
+                        }
+                    }
+                })
+                .expect(200, done);
+        });
+    });
+
     describe("with specified path to endpoint without leading slash", function () {
         it("should return result for this endpoint anyway", function (done) {
             app.get("/api/user", function apiUserHandler(req, res) {
@@ -246,13 +271,13 @@ describe("request to route for express-batch", function () {
     describe("with two endpoints specified", function () {
         it("should return results for both endpoints", function (done) {
             app
-                .get("/api/president/:id", function apiUserHandler(req, res) {
+                .get("/api/president/:id", function apiPresidentHandler(req, res) {
                     res.json({
                         id: 44,
                         name: 'Barack'
                     });
                 })
-                .get("/api/weather/:city/:timestamp", function apiUserHandler(req, res) {
+                .get("/api/weather/:city/:timestamp", function apiWeatherHandler(req, res) {
                     res.json({
                         city: 'Kyiv',
                         timestamp: 1416337310,
@@ -288,10 +313,10 @@ describe("request to route for express-batch", function () {
     describe("with three endpoints specified, when one of them not found", function () {
         it("should return results for two endpoints and status for not existent", function (done) {
             app
-                .get("/api/constants/pi", function apiUserHandler(req, res) {
+                .get("/api/constants/pi", function apiHandler(req, res) {
                     res.send(Math.PI);
                 })
-                .get("/api/constants/e", function apiUserHandler(req, res) {
+                .get("/api/constants/e", function apiHandler(req, res) {
                     res.send(Math.E);
                 });
 
