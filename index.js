@@ -1,19 +1,15 @@
-var
-    FakeRequest = require('./lib/FakeRequest'),
-    FakeResponse = require('./lib/FakeResponse'),
+"use strict";
 
-    undefined;
+var FakeRequest = require('./lib/FakeRequest');
+var FakeResponse = require('./lib/FakeResponse');
 
-module.exports = function (app) {
+module.exports = function expressBatch(app) {
 
     return function (req, res, next) {
-
-        var
-            results = {},
-            requests = req.query,
-            requestCount = Object.keys(requests).length,
-            finishedRequests = 0,
-            undefined;
+        var results = {};
+        var requests = req.query;
+        var requestCount = Object.keys(requests).length;
+        var finishedRequests = 0;
 
         if (requestCount === 0) {
             res.jsonp(results);
@@ -23,9 +19,9 @@ module.exports = function (app) {
         for (var key in requests) {
             results[key] = {};
 
-            var request = requests[key],
-                fakeReq = new FakeRequest(request, req.headers),
-                fakeRes = new FakeResponse(results[key]);
+            var request = requests[key];
+            var fakeReq = new FakeRequest(request, req.headers);
+            var fakeRes = new FakeResponse(results[key]);
 
             fakeRes.once('end', done);
 
@@ -48,4 +44,3 @@ module.exports = function (app) {
         }
     }
 }
-

@@ -1,10 +1,9 @@
-var
-    should = require("should"),
-    request = require("supertest"),
-    express = require("express"),
-    expressBatch = require(".."),
+"use strict";
 
-    undefined;
+var should = require("should");
+var request = require("supertest");
+var express = require("express");
+var expressBatch = require("..");
 
 describe("request to route for express-batch", function () {
 
