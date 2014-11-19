@@ -36,7 +36,7 @@ describe("request to route for express-batch", function () {
         });
     });
 
-    describe.skip("with invalid endpoint specified", function () {
+    describe("with invalid endpoint specified", function () {
         it("should indicate 'not found' status in result", function (done) {
             request(app)
                 .get("/api/batch?endpoint=/wrong/path")
@@ -49,11 +49,11 @@ describe("request to route for express-batch", function () {
         });
     });
 
-    describe.skip("with request to endpoint handler with async exception", function () {
+    describe("with request to endpoint handler with async exception", function () {
         it("should handle exception and return status 500 in result", function (done) {
 
             app.get("/api/exception/sync", function (req, res) {
-                throw new Exception('async exception');
+                throw new Error('sync exception');
             });
 
             request(app)
@@ -73,7 +73,7 @@ describe("request to route for express-batch", function () {
 
             app.get("/api/exception/async", function (req, res) {
                 setImmediate(function asyncException() {
-                    throw new Exception('async exception');
+                    throw new Error('async exception');
                 });
 
             });
@@ -153,7 +153,7 @@ describe("request to route for express-batch", function () {
     });
 
 
-    describe.skip("with specified path to endpoint, which uses res.end methods", function () {
+    describe.skip("with specified path to endpoint, which uses res.end method", function () {
         it("should return result and status for this endpoint", function (done) {
             app.get("/api/timestamp", function apiTimestampHandler(req, res) {
                 res.end(556984800);
@@ -189,7 +189,7 @@ describe("request to route for express-batch", function () {
         });
     });
 
-    describe.skip("with specified path to endpoint, uses res.status and res.end methods", function () {
+    describe("with specified path to endpoint, uses res.status and res.end methods", function () {
         it("should return only status for this endpoint", function (done) {
             app.get("/api/timestamp", function apiTimestampHandler(req, res) {
                 res.status(403).end();
@@ -199,7 +199,6 @@ describe("request to route for express-batch", function () {
                 .get("/api/batch?timestamp=/api/timestamp")
                 .expect({
                     timestamp: {
-                        //@todo probably add empty status
                         status: 403
                     }
                 })
@@ -207,7 +206,7 @@ describe("request to route for express-batch", function () {
         });
     });
 
-    describe.skip("with specified path to endpoint, which specified status only via res.sendStatus using", function () {
+    describe("with specified path to endpoint, which specified status only via res.sendStatus using", function () {
         it("should return only status for this endpoint", function (done) {
             app.get("/api/timestamp", function apiTimestampHandler(req, res) {
                 res.sendStatus(403);
@@ -217,7 +216,6 @@ describe("request to route for express-batch", function () {
                 .get("/api/batch?timestamp=/api/timestamp")
                 .expect({
                     timestamp: {
-                        //@todo probably add empty status
                         status: 403
                     }
                 })

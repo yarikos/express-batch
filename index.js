@@ -10,8 +10,6 @@ var
 
 module.exports = function (app) {
 
-    debug('app', app.routes)
-
     return function (req, res, next) {
 
         var
@@ -31,30 +29,35 @@ module.exports = function (app) {
         for (var key in requests) {
             var request = requests[key];
 
-
             var fakeReq = new FakeRequest(request, req.headers),
-                fakeRes = new FakeResponse();
+                fakeRes = new FakeResponse(key);
 
             fakeRes.once('end', function () {
-                debug('end')
+                //@todo how about require('on-finished') using
                 // don't leak listeners
                 fakeRes.removeAllListeners();
-                done(null, key, fakeRes);
+                done(null, fakeRes);
             });
 
             fakeRes.once('error', function (err) {
                 fakeRes.removeAllListeners();
-                done(err, key);
+                done(err, fakeRes);
             });
 
-            debug('calling', request)
-            app(fakeReq, fakeRes);
+            app(fakeReq, fakeRes, finalHandler(fakeRes)); //@todo probably could be refactored
         }
 
+        function finalHandler(fakeRes) {
+            return function (err) {
+                if (err) {
+                    fakeRes.sendStatus(500);
+                }
+                return fakeRes.sendStatus(404);
+            }
+        }
 
-        function done(err, key, fakeRes) {
-            debug('done', key, fakeRes, err)
-            results[key] = fakeRes.getResults();
+        function done(err, fakeRes) {
+            results[fakeRes.expressBatchKey] = fakeRes.getResults();
             if (++cnt == requestCount) {
                 res.jsonp(results)
             }
