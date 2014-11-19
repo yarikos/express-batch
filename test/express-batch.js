@@ -5,6 +5,15 @@ var request = require("supertest");
 var express = require("express");
 var expressBatch = require("..");
 
+describe("express-batch as a module", function () {
+    it("should provide function, which returns middleware function", function () {
+        var app = express();
+        should(expressBatch).be.a.Function;
+
+        should(expressBatch(app)).be.a.Function;
+    });
+});
+
 describe("request to route for express-batch", function () {
 
     var app;
