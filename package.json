@@ -4,7 +4,7 @@
     "description": "Middleware, which allow you to perform batch requests to your express.js powered API.",
     "main": "express-batch.js",
     "scripts": {
-        "test": "node_modules/.bin/mocha  --reporter spec --bail --growl -w --check-leaks test/"
+        "test": "node_modules/.bin/mocha  --reporter spec --bail --growl --check-leaks test/"
     },
     "repository": {
         "type": "git",
