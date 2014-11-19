@@ -6,17 +6,6 @@ var
 
     undefined;
 
-
-describe("express-batch as a module", function () {
-    it("should provide function, which returns middleware function", function () {
-        var app = express();
-        should(expressBatch).be.a.Function;
-
-        should(expressBatch(app)).be.a.Function;
-
-    });
-});
-
 describe("request to route for express-batch", function () {
 
     var app;
@@ -42,7 +31,8 @@ describe("request to route for express-batch", function () {
                 .get("/api/batch?endpoint=/wrong/path")
                 .expect({
                     endpoint: {
-                        status: 404
+                        status: 404,
+                        result: "Not Found"
                     }
                 })
                 .expect(200, done);
@@ -60,13 +50,13 @@ describe("request to route for express-batch", function () {
                 .get("/api/batch?endpoint=/api/exception/sync")
                 .expect({
                     endpoint: {
-                        status: 500
+                        status: 500,
+                        result: "Internal Server Error"
                     }
                 })
                 .expect(200, done);
         });
     });
-
 
     describe.skip("with request to endpoint handler with async exception", function () {
         it("should handle exception and return status 500 in result", function (done) {
@@ -88,7 +78,6 @@ describe("request to route for express-batch", function () {
                 .expect(200, done);
         });
     });
-
 
     describe("with specified path to endpoint, which uses res.json", function () {
         it("should return result and status for this endpoint", function (done) {
@@ -134,7 +123,7 @@ describe("request to route for express-batch", function () {
         });
     });
 
-    describe.skip("with specified path to endpoint, which uses res.send method", function () {
+    describe("with specified path to endpoint, which uses res.send method", function () {
         it("should return result and status for this endpoint", function (done) {
             app.get("/api/timestamp", function apiTimestampHandler(req, res) {
                 res.send(556984800);
@@ -153,7 +142,7 @@ describe("request to route for express-batch", function () {
     });
 
 
-    describe.skip("with specified path to endpoint, which uses res.end method", function () {
+    describe("with specified path to endpoint, which uses res.end method", function () {
         it("should return result and status for this endpoint", function (done) {
             app.get("/api/timestamp", function apiTimestampHandler(req, res) {
                 res.end(556984800);
@@ -172,7 +161,7 @@ describe("request to route for express-batch", function () {
     });
 
 
-    describe.skip("with specified path to endpoint, which uses res.sendFile method", function () {
+    describe("with specified path to endpoint, which uses res.sendFile method", function () {
         it("should return error status for this endpoint since it isn't supported", function (done) {
             app.get("/api/file", function apiFileHandler(req, res) {
                 res.sendFile(__filename);
@@ -182,7 +171,8 @@ describe("request to route for express-batch", function () {
                 .get("/api/batch?file=/api/file")
                 .expect({
                     file: {
-                        status: 400
+                        status: 501,
+                        result: "Not Implemented"
                     }
                 })
                 .expect(200, done);
@@ -216,7 +206,8 @@ describe("request to route for express-batch", function () {
                 .get("/api/batch?timestamp=/api/timestamp")
                 .expect({
                     timestamp: {
-                        status: 403
+                        status: 403,
+                        result: "Forbidden"
                     }
                 })
                 .expect(200, done);
@@ -246,7 +237,7 @@ describe("request to route for express-batch", function () {
     });
 
 
-    describe.skip("with two endpoints specified", function () {
+    describe("with two endpoints specified", function () {
         it("should return results for both endpoints", function (done) {
             app
                 .get("/api/president/:id", function apiUserHandler(req, res) {
@@ -265,9 +256,9 @@ describe("request to route for express-batch", function () {
                 });
 
             request(app)
-                .get("/api/batch?president=api/president/44&/api/weather/kyiv/1416337310")
+                .get("/api/batch?president=api/president/44&weather=/api/weather/kyiv/1416337310")
                 .expect({
-                    user: {
+                    president: {
                         status: 200,
                         result: {
                             id: 44,
@@ -288,7 +279,7 @@ describe("request to route for express-batch", function () {
         });
     });
 
-    describe.skip("with three endpoints specified, when one of them not found", function () {
+    describe("with three endpoints specified, when one of them not found", function () {
         it("should return results for two endpoints and status for not existent", function (done) {
             app
                 .get("/api/constants/pi", function apiUserHandler(req, res) {
@@ -310,7 +301,8 @@ describe("request to route for express-batch", function () {
                         result: Math.PI
                     },
                     mendelson: {
-                        status: 404
+                        status: 404,
+                        result: "Not Found"
                     }                })
                 .expect(200, done);
         });
