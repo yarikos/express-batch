@@ -12,8 +12,7 @@ module.exports = function expressBatch(app) {
         var finishedRequests = 0;
 
         if (requestCount === 0) {
-            res.jsonp(results);
-            return;
+            return res.jsonp(results);
         }
 
         for (var key in requests) {
@@ -31,9 +30,9 @@ module.exports = function expressBatch(app) {
         function finalHandler(fakeRes) {
             return function (err) {
                 if (err) {
-                    fakeRes.sendStatus(500);
+                    return fakeRes.sendStatus(500);
                 }
-                return fakeRes.sendStatus(404);
+                fakeRes.sendStatus(404);
             }
         }
 
