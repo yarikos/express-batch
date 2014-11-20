@@ -33,6 +33,7 @@ app.get("/api/users/:id", function apiUserHandler(req, res) {
 
 app.listen(3000);
 ```
+[This example in code.](example)
 
 With this example request to  `http://localhost:3000/api/batch?users=/api/users/49&pi=api/constants/pi&nonexistent=/not/existent/route` will return:
 
