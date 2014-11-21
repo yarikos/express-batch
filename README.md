@@ -1,8 +1,10 @@
 express-batch
 =============
-[![Build Status][travis-image]][travis-url]
-[![NPM Downloads][downloads-image]][downloads-url]
-[![License][license-image]][license-url]
+
+[![Build Status][travis-img]][travis-url]
+[![Test Coverage][coveralls-img]][coveralls-url]
+[![NPM Downloads][downloads-img]][downloads-url]
+[![License][license-img]][license-url]
 
 ## Description
 
@@ -90,9 +92,11 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 
   [MIT](LICENSE)
 
-[travis-image]: https://travis-ci.org/yarikos/express-batch.svg?branch=master
+[travis-img]: https://travis-ci.org/yarikos/express-batch.svg?branch=master
 [travis-url]: https://travis-ci.org/yarikos/express-batch
-[downloads-image]: https://img.shields.io/npm/dm/express-batch.svg
+[downloads-img]: https://img.shields.io/npm/dm/express-batch.svg
 [downloads-url]: https://npmjs.org/package/express-batch
-[license-image]: http://img.shields.io/npm/l/express-batch.svg
+[license-img]: https://img.shields.io/npm/l/express-batch.svg
 [license-url]: LICENSE
+[coveralls-img]: https://img.shields.io/coveralls/yarikos/express-batch.svg
+[coveralls-url]: https://coveralls.io/r/yarikos/express-batch
