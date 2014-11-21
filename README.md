@@ -21,7 +21,7 @@ var express = require("express");
 var expressBatch = require("express-batch");
 
 
-var app = express();README.md
+var app = express();
 app.use("/api/batch", expressBatch(app));
 
 
@@ -85,9 +85,10 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 
 
 ## Todo
-- Returning headers in batch results
-- Support of rest of HTTP methods
-- Support of rest of `response` methods
+- [ ] Returning headers in batch results
+- [ ] Support of arrays (`batch?users=/api/users/1&users=/api/users/2` should return `users: [{id:1}, {id:2}]`)
+- [ ] Support of rest of HTTP methods
+- [ ] Support of rest of `response` methods
    
    
 ## License
