@@ -21,7 +21,7 @@ var express = require("express");
 var expressBatch = require("express-batch");
 
 
-var app = express();README.md
+var app = express();
 app.use("/api/batch", expressBatch(app));
 
 
