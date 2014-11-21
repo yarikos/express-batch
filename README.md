@@ -1,6 +1,8 @@
 express-batch
 =============
-[![Build Status](https://travis-ci.org/yarikos/express-batch.svg?branch=master)](https://travis-ci.org/yarikos/express-batch)
+[![Build Status][travis-image]][travis-url]
+[![NPM Downloads][downloads-image]][downloads-url]
+[![License][license-image]][license-url]
 
 ## Description
 
@@ -86,4 +88,11 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
    
 ## License
 
-  MIT
+  [MIT](LICENSE)
+
+[travis-image]: https://travis-ci.org/yarikos/express-batch.svg?branch=master
+[travis-url]: https://travis-ci.org/yarikos/express-batch
+[downloads-image]: https://img.shields.io/npm/dm/express-batch.svg
+[downloads-url]: https://npmjs.org/package/express-batch
+[license-image]: http://img.shields.io/npm/l/express-batch.svg
+[license-url]: LICENSE
