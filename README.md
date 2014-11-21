@@ -3,6 +3,7 @@ express-batch
 
 [![Build Status][travis-img]][travis-url]
 [![Test Coverage][coveralls-img]][coveralls-url]
+[![Code Climate][codeclimate-img]][codeclimate-url]
 [![NPM Downloads][downloads-img]][downloads-url]
 [![License][license-img]][license-url]
 
@@ -101,3 +102,5 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 [license-url]: LICENSE
 [coveralls-img]: https://img.shields.io/coveralls/yarikos/express-batch.svg
 [coveralls-url]: https://coveralls.io/r/yarikos/express-batch
+[codeclimate-img]: https://img.shields.io/codeclimate/github/yarikos/express-batch.svg
+[codeclimate-url]: https://codeclimate.com/github/yarikos/express-batch 
