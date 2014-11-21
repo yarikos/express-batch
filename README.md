@@ -80,6 +80,7 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
  There are similar packages, but which work via using real http requests:
 - [sonofabatch](https://www.npmjs.org/package/sonofabatch)   
 - [batch-endpoint](https://www.npmjs.org/package/batch-endpoint)
+- [express-batch-proxy](https://github.com/codastic/express-batch-proxy)
 
 
 ## Todo
