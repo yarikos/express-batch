@@ -64,7 +64,7 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 
 
 ## Limitations
-
+* Tested only with Express 4
 * Supports only routes for GET requests.
 * Handlers which will bу used beyon the middleware, could use only these methods of response:
   - `res.json()`
