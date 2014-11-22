@@ -5,8 +5,8 @@
   "main": "express-batch.js",
   "scripts": {
     "test": "node_modules/.bin/mocha  --reporter spec --bail --growl --check-leaks test/",
-    "test-cov": "node_modules/.bin/istanbul cover node_modules/.bin/mocha -- --reporter dot --check-leaks test/",
-    "test-travis": "node_modules/.bin/istanbul cover node_modules/.bin/mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    "test-cov": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --reporter dot --check-leaks test/",
+    "test-travis": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
   },
   "repository": {
     "type": "git",
