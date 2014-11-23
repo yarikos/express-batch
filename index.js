@@ -5,7 +5,7 @@ var FakeResponse = require('./lib/FakeResponse');
 
 module.exports = function expressBatch(app) {
 
-    return function (req, res, next) {
+    return function (req, res) {
         var results = {};
         var requests = req.query;
         var requestCount = Object.keys(requests).length;
@@ -33,7 +33,7 @@ module.exports = function expressBatch(app) {
                     return fakeRes.sendStatus(500);
                 }
                 fakeRes.sendStatus(404);
-            }
+            };
         }
 
         function done() {
@@ -41,5 +41,5 @@ module.exports = function expressBatch(app) {
                 res.jsonp(results);
             }
         }
-    }
+    };
 }
