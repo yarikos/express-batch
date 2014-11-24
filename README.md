@@ -9,22 +9,29 @@ express-batch
 
 ## Description
 
-Express middleware, which allow to perform batch requests.
+Handler for Express 4 application, which allows to perform batch requests.
 
-It parses requested routes, tries to invoke handler for each route and returns all results in one response.
+It's attached as handler of an particular route.
 
+If you need to perform several different requests to one API simultaneously, you could combine them all together (in one querystring) and send only one request to the handler's route;  
+
+Handler parses requests, tries to invoke relevant handler for each request (standard app router is used), collect all responses and send them back as JSON object with sections for each response.
+
+Currently only routes for GET locations supported.
 
 ## Example
 
 ```js
+// app init
 var express = require("express");
 var expressBatch = require("express-batch");
-
-
 var app = express();
+
+// mounting batch handler
 app.use("/api/batch", expressBatch(app));
 
 
+// mounting ordinary API endpoints
 app.get("/api/constants/pi", function apiUserHandler(req, res) {
     res.send(Math.PI);
 });
@@ -36,6 +43,7 @@ app.get("/api/users/:id", function apiUserHandler(req, res) {
     });
 });
 
+// starting app
 app.listen(3000);
 ```
 [This example in code.](example)
