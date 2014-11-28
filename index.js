@@ -3,7 +3,7 @@
 var FakeRequest = require('./lib/FakeRequest');
 var FakeResponse = require('./lib/FakeResponse');
 
-module.exports = function expressBatch(app) {
+module.exports = function expressBatch(app, options) {
 
     return function (req, res) {
         var results = {};
@@ -20,7 +20,7 @@ module.exports = function expressBatch(app) {
 
             var request = requests[key];
             var fakeReq = new FakeRequest(request, req.headers);
-            var fakeRes = new FakeResponse(results[key]);
+            var fakeRes = new FakeResponse(results[key], options);
 
             fakeRes.once('end', done);
 

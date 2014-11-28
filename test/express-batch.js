@@ -334,7 +334,80 @@ describe("request to route for express-batch", function () {
                     mendelson: {
                         status: 404,
                         result: "Not Found"
-                    }                })
+                    }
+                })
+                .expect(200, done);
+        });
+    });
+
+    describe("with activated headers passing", function () {
+
+        beforeEach(function () {
+            var options = {
+                returnHeaders: true
+            };
+            app.use("/api/batchWithHeaders", expressBatch(app, options));
+        });
+
+
+        it("should provide headers field in results", function (done) {
+            app
+                .get("/api/constants/pi", function apiHandler(req, res) {
+                    res.send(Math.PI);
+                });
+
+            request(app)
+                .get("/api/batchWithHeaders?pi=/api/constants/pi")
+                .expect({
+                    pi: {
+                        status: 200,
+                        result: Math.PI,
+                        headers: {
+                            "X-Powered-By": "Express"
+                        }
+                    }
+                })
+                .expect(200, done);
+        });
+        it("should return headers from handlers which specified them", function (done) {
+            app
+                .get("/api/constants/pi", function apiHandler(req, res) {
+                    res.setHeader('token', 124);
+                    res.send(Math.PI);
+                })
+                .get("/api/constants/e", function apiHandler(req, res) {
+                    res.send(Math.E);
+                });
+
+            request(app)
+                .get("/api/batchWithHeaders?e=/api/constants/e&pi=/api/constants/pi&mendelson=/api/constants/mendelson")
+                .expect({
+                    e: {
+                        status: 200,
+                        result: Math.E,
+                        // @FIXME strict checking of content of "headers" (equality to exact object) seems redundant
+                        // @FIXME probably only existence of "headers" should be checked
+                        headers: {
+                            "X-Powered-By": "Express"
+                        }
+                    },
+                    pi: {
+                        status: 200,
+                        result: Math.PI,
+                        headers: {
+                            "X-Powered-By": "Express",
+                            token: 124
+                        }
+                    },
+                    mendelson: {
+                        status: 404,
+                        result: "Not Found",
+                        headers: {
+                            "X-Powered-By": "Express",
+                            "Content-Type": "text/plain; charset=utf-8"
+                        }
+                    }
+                })
                 .expect(200, done);
         });
     });
