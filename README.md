@@ -74,7 +74,7 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 ## Limitations
 * Tested only with Express 4
 * Supports only routes for GET requests.
-* Handlers which will bу used beyon the middleware, could use only these methods of response:
+* Handlers which will bу used beyond the middleware, could use only these methods of response:
   - `res.json()`
   - `res.jsonp()`
   - `res.jsonp()`
@@ -82,6 +82,7 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
   - `res.status()`
   - `res.sendStatus()`
   - `res.sendStatus()`
+  - `res.setHeader()`
   -  assign value to `res.statusCode` 
     
 ## Notes
@@ -93,7 +94,8 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 
 
 ## Todo
-- [ ] Returning headers in batch results
+- [x] Returning headers in batch results
+- [ ] Add documentation about headers passing 
 - [ ] Support of arrays (`batch?users=/api/users/1&users=/api/users/2` should return `users: [{id:1}, {id:2}]`)
 - [ ] Support of rest of HTTP methods
 - [ ] Support of rest of `response` methods
