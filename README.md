@@ -9,7 +9,7 @@ express-batch
 
 ## Description
 
-Handler for Express 4 application, which allows to perform batch requests.
+Handler for [Express 4](http://expressjs.com/4x/api.html) application, which allows to perform batch requests.
 
 It's attached as handler of an particular route.
 
