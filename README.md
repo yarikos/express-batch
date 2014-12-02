@@ -6,6 +6,7 @@ express-batch
 [![Code Climate][codeclimate-img]][codeclimate-url]
 [![NPM Downloads][downloads-img]][downloads-url]
 [![License][license-img]][license-url]
+
 [![Gitter][gitter-img]][gitter-url]
 
 ## Description
@@ -116,5 +117,5 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 [coveralls-url]: https://coveralls.io/r/yarikos/express-batch
 [codeclimate-img]: https://img.shields.io/codeclimate/github/yarikos/express-batch.svg
 [codeclimate-url]: https://codeclimate.com/github/yarikos/express-batch
-[gitter-img]: https://badges.gitter.im/Join Chat.svg
+[gitter-img]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-url]: https://gitter.im/yarikos/express-batch?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
