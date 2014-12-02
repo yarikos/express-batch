@@ -6,7 +6,6 @@ express-batch
 [![Code Climate][codeclimate-img]][codeclimate-url]
 [![NPM Downloads][downloads-img]][downloads-url]
 [![License][license-img]][license-url]
-
 [![Gitter][gitter-img]][gitter-url]
 
 ## Description
