@@ -1,12 +1,12 @@
 express-batch
 =============
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/yarikos/express-batch?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Build Status][travis-img]][travis-url]
 [![Test Coverage][coveralls-img]][coveralls-url]
 [![Code Climate][codeclimate-img]][codeclimate-url]
 [![NPM Downloads][downloads-img]][downloads-url]
 [![License][license-img]][license-url]
+[![Gitter][gitter-img]][gitter-url]
 
 ## Description
 
@@ -115,4 +115,6 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 [coveralls-img]: https://img.shields.io/coveralls/yarikos/express-batch.svg
 [coveralls-url]: https://coveralls.io/r/yarikos/express-batch
 [codeclimate-img]: https://img.shields.io/codeclimate/github/yarikos/express-batch.svg
-[codeclimate-url]: https://codeclimate.com/github/yarikos/express-batch 
+[codeclimate-url]: https://codeclimate.com/github/yarikos/express-batch
+[gitter-img]: https://badges.gitter.im/Join Chat.svg
+[gitter-url]: https://gitter.im/yarikos/express-batch?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
