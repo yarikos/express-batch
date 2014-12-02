@@ -1,5 +1,6 @@
 express-batch
 =============
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/yarikos/express-batch?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Build Status][travis-img]][travis-url]
 [![Test Coverage][coveralls-img]][coveralls-url]
