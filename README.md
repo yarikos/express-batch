@@ -6,7 +6,6 @@ express-batch
 [![Code Climate][codeclimate-img]][codeclimate-url]
 [![NPM Downloads][downloads-img]][downloads-url]
 [![License][license-img]][license-url]
-[![Gitter][gitter-img]][gitter-url]
 
 ## Description
 
@@ -106,6 +105,11 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 
   [MIT](LICENSE)
 
+============= 
+[![Gitter][gitter-img]][gitter-url]
+[![Bitdeli Badge][bitdeli-img]][bitdeli-url]
+
+
 [travis-img]: https://travis-ci.org/yarikos/express-batch.svg?branch=master
 [travis-url]: https://travis-ci.org/yarikos/express-batch
 [downloads-img]: https://img.shields.io/npm/dm/express-batch.svg
@@ -118,7 +122,5 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 [codeclimate-url]: https://codeclimate.com/github/yarikos/express-batch
 [gitter-img]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-url]: https://gitter.im/yarikos/express-batch?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/yarikos/express-batch/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+[bitdeli-img]: https://d2weczhvl823v0.cloudfront.net/yarikos/express-batch/trend.png
+[bitdeli-url]: https://bitdeli.com/free%20%22Bitdeli%20Badge%22
