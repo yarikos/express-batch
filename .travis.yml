@@ -1,10 +1,19 @@
 language: node_js
 node_js:
-  - "0.10"
+  - "0.12"
   - "0.11"
+  - "0.10"
+#  - "0.8"
+#  - "0.6"
+  - "iojs"
 matrix:
   allow_failures:
-    - node_js: "0.11"
+    - node_js:"0.12"
+    - node_js:"0.11"
+#    - node_js:"0.8"
+#    - node_js:"0.6"
+    - node_js:"iojs"
   fast_finish: true
-script: "npm run-script test-travis"
-after_script: "test $TRAVIS_NODE_VERSION = '0.10' && npm install coveralls@2 && cat ./coverage/lcov.info | coveralls"
+script: "test $TRAVIS_NODE_VERSION='0.10' && npm install coveralls@2 istanbul@0.3.17 && npm run test-travis-cov || npm run test-travis"
+after_script: "test $TRAVIS_NODE_VERSION='0.10' && cat ./coverage/lcov.info | coveralls"
+sudo: false
