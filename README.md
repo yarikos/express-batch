@@ -72,6 +72,7 @@ With this example, a request to  `http://localhost:3000/api/batch?users=/api/use
 
 It is also possible to have nested field-value pairs by passing in an options argument with a custom separator property.
 
+```js
 // mount batch handler with optional separator for nested field-value pairs
 var options = {
     separator: ';'
@@ -92,6 +93,7 @@ app.get("/api/climate/", function apiClimateHandler(req, res) {
     }
     res.json(response);
 });
+```
 
 ## Limitations
 * Tested only with Express 4
