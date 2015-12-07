@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node_modules/.bin/mocha  --reporter spec --bail --growl --check-leaks test/",
     "test-cov": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --reporter dot --check-leaks test/",
-    "test-travis": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    "test-travis": "node_modules/.bin/_mocha --reporter spec --check-leaks test/",
+    "test-travis-cov": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,6 @@
   "dependencies": {},
   "devDependencies": {
     "express": "4.*",
-    "istanbul": "^0.3.2",
     "mocha": "2.x",
     "should": "^7.1.1",
     "supertest": "^1.1.0"
