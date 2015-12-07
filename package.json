@@ -1,7 +1,7 @@
 {
   "name": "express-batch",
-  "version": "0.1.1",
-  "description": "Middleware, which allow you to perform batch requests to your express.js powered API.",
+  "version": "0.2.0",
+  "description": "Middleware for Express that allows for batched API requests.",
   "main": "express-batch.js",
   "scripts": {
     "test": "node_modules/.bin/mocha  --reporter spec --bail --growl --check-leaks test/",
