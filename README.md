@@ -9,15 +9,15 @@ express-batch
 
 ## Description
 
-Handler for [Express 4](http://expressjs.com/4x/api.html) application, which allows to perform batch requests.
+Middleware for [Express 4.x](http://expressjs.com/4x/api.html) that allows for batched API requests.
 
-It's attached as handler of an particular route.
+It's attached as a handler for a particular route.
 
-If you need to perform several different requests to one API simultaneously, you could combine them all together (in one querystring) and send only one request to the handler's route;  
+If you need to perform several different requests to one API simultaneously, you could combine them all together (in one querystring) and send only one request to the handler's route.
 
-Handler parses requests, tries to invoke relevant handler for each request (standard app router is used), collect all responses and send them back as JSON object with sections for each response.
+The handler parses requests, and then invokes the relevant handler for each request (the standard app router is used), collects all the responses and sends them back as a JSON object with sections for each response.
 
-Currently only routes for GET locations supported.
+Currently, only routes for GET locations are upported.
 
 ## Example
 
@@ -27,11 +27,11 @@ var express = require("express");
 var expressBatch = require("express-batch");
 var app = express();
 
-// mounting batch handler
+// mount batch middeleware
 app.use("/api/batch", expressBatch(app));
 
 
-// mounting ordinary API endpoints
+// mount ordinary API endpoints
 app.get("/api/constants/pi", function apiUserHandler(req, res) {
     res.send(Math.PI);
 });
@@ -43,12 +43,12 @@ app.get("/api/users/:id", function apiUserHandler(req, res) {
     });
 });
 
-// starting app
+// start the app
 app.listen(3000);
 ```
 [This example in code.](example)
 
-With this example request to  `http://localhost:3000/api/batch?users=/api/users/49&pi=api/constants/pi&nonexistent=/not/existent/route` will return:
+With this example, a request to  `http://localhost:3000/api/batch?users=/api/users/49&pi=api/constants/pi&nonexistent=/not/existent/route` will return:
 
 ```js
 {
@@ -70,6 +70,30 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
 }
 ```
 
+It is also possible to have nested field-value pairs by passing in an options argument with a custom separator property.
+
+```js
+// mount batch handler with optional separator for nested field-value pairs
+var options = {
+    separator: ';'
+};
+app.use("/api/batch", expressBatch(app, options));
+
+// easily handle batched requests with deep field-value pairs
+app.get("/api/climate/", function apiClimateHandler(req, res) {
+    var response = {
+        sunny: false,
+        warm: false
+    };
+
+    // e.g., with a request path of 'api/batch?climate=/api/climate/?sunny=true&warm=true'
+    if (req.query.sunny === 'true' && req.query.warm === 'true') {
+        response.sunny = true;
+        response.warm = true;
+    }
+    res.json(response);
+});
+```
 
 ## Limitations
 * Tested only with Express 4
@@ -87,7 +111,7 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
     
 ## Notes
 
- There are similar packages, but which work via using real http requests:
+There are similar packages, but which work using real http requests:
 - [sonofabatch](https://www.npmjs.org/package/sonofabatch)   
 - [batch-endpoint](https://www.npmjs.org/package/batch-endpoint)
 - [express-batch-proxy](https://github.com/codastic/express-batch-proxy)

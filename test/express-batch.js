@@ -340,6 +340,63 @@ describe("request to route for express-batch", function () {
         });
     });
 
+    describe("with two endpoints specified, with a nested series of field-value pairs using an optional separator", function () {
+
+        beforeEach(function () {
+            var options = {
+                separator: ';'
+            };
+            app.use("/api/batchNested", expressBatch(app, options));
+        });
+
+        it("should return results for two endpoints with nested field-value pairs", function (done) {
+
+            app
+                .get("/api/climate/", function apiClimateHandler(req, res) {
+                    var response = {
+                        sunny: false,
+                        warm: false
+                    };
+                    if (req.query.sunny === 'true' && req.query.warm === 'true') {
+                        response.sunny = true;
+                        response.warm = true;
+                    }
+                    res.json(response);
+                })
+                .get("/api/topography/", function apiTopographyHandler(req, res) {
+                    var response = {
+                        hilly: true,
+                        rocky: true
+                    };
+                    if (req.query.hilly === 'false' && req.query.rocky === 'false') {
+                        response.hilly = false;
+                        response.rocky = false;
+                    }
+                    res.json(response);
+                });
+
+            request(app)
+                .get("/api/batchNested?climate=/api/climate/?sunny=true&warm=true;topography=/api/topography/?hilly=false&rocky=false")
+                .expect({
+                    climate: {
+                        status: 200,
+                        result: {
+                            sunny: true,
+                            warm: true
+                        }
+                    },
+                    topography: {
+                        status: 200,
+                        result: {
+                            hilly: false,
+                            rocky: false
+                        }
+                    }
+                })
+                .expect(200, done);
+        });
+    });
+
     describe("with activated headers passing", function () {
 
         beforeEach(function () {
