@@ -28,7 +28,7 @@
     "express": "4.*",
     "istanbul": "^0.3.2",
     "mocha": "2.x",
-    "should": "4.x",
-    "supertest": "0.15"
+    "should": "^7.1.1",
+    "supertest": "^1.1.0"
   }
 }
