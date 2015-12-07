@@ -9,15 +9,15 @@ express-batch
 
 ## Description
 
-Handler for [Express 4](http://expressjs.com/4x/api.html) application, which allows to perform batch requests.
+Handler for [Express 4](http://expressjs.com/4x/api.html) application that allows to perform batch requests.
 
-It's attached as handler of an particular route.
+It's attached as a handler for a particular route.
 
-If you need to perform several different requests to one API simultaneously, you could combine them all together (in one querystring) and send only one request to the handler's route;  
+If you need to perform several different requests to one API simultaneously, you could combine them all together (in one querystring) and send only one request to the handler's route.
 
-Handler parses requests, tries to invoke relevant handler for each request (standard app router is used), collect all responses and send them back as JSON object with sections for each response.
+The handler parses requests, and then invokes the relevant handler for each request (the standard app router is used), collects all the responses and sends them back as a JSON object with sections for each response.
 
-Currently only routes for GET locations supported.
+Currently, only routes for GET locations are upported.
 
 ## Example
 
@@ -48,7 +48,7 @@ app.listen(3000);
 ```
 [This example in code.](example)
 
-With this example request to  `http://localhost:3000/api/batch?users=/api/users/49&pi=api/constants/pi&nonexistent=/not/existent/route` will return:
+With this example, a request to  `http://localhost:3000/api/batch?users=/api/users/49&pi=api/constants/pi&nonexistent=/not/existent/route` will return:
 
 ```js
 {
@@ -87,7 +87,7 @@ With this example request to  `http://localhost:3000/api/batch?users=/api/users/
     
 ## Notes
 
- There are similar packages, but which work via using real http requests:
+There are similar packages, but which work using real http requests:
 - [sonofabatch](https://www.npmjs.org/package/sonofabatch)   
 - [batch-endpoint](https://www.npmjs.org/package/batch-endpoint)
 - [express-batch-proxy](https://github.com/codastic/express-batch-proxy)
