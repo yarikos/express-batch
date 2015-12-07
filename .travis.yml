@@ -18,6 +18,6 @@ matrix:
 #    - node_js:"0.6"
     - node_js:"iojs"
   fast_finish: true
-script: "test $TRAVIS_NODE_VERSION='5.1' && npm install coveralls@2 istanbul@0.4 && npm run test-travis-cov || npm run test-travis"
-after_script: "test $TRAVIS_NODE_VERSION='5.1' && cat ./coverage/lcov.info | coveralls"
+script: "if [[ $TRAVIS_NODE_VERSION=='5.1' ]]; then npm install coveralls@2 istanbul@0.4 && npm run test-travis-cov; else npm run test-travis; fi"
+after_script: "if [[ $TRAVIS_NODE_VERSION=='5.1' ]]; then cat ./coverage/lcov.info | coveralls; fi"
 sudo: false
