@@ -9,7 +9,7 @@ express-batch
 
 ## Description
 
-Handler for [Express 4](http://expressjs.com/4x/api.html) application that allows to perform batch requests.
+Middleware for [Express 4.x](http://expressjs.com/4x/api.html) that allows for batched API requests.
 
 It's attached as a handler for a particular route.
 
@@ -27,11 +27,11 @@ var express = require("express");
 var expressBatch = require("express-batch");
 var app = express();
 
-// mounting batch handler
+// mount batch middeleware
 app.use("/api/batch", expressBatch(app));
 
 
-// mounting ordinary API endpoints
+// mount ordinary API endpoints
 app.get("/api/constants/pi", function apiUserHandler(req, res) {
     res.send(Math.PI);
 });
@@ -43,7 +43,7 @@ app.get("/api/users/:id", function apiUserHandler(req, res) {
     });
 });
 
-// starting app
+// start the app
 app.listen(3000);
 ```
 [This example in code.](example)
@@ -70,6 +70,28 @@ With this example, a request to  `http://localhost:3000/api/batch?users=/api/use
 }
 ```
 
+It is also possible to have nested field-value pairs by passing in an options argument with a custom separator property.
+
+// mount batch handler with optional separator for nested field-value pairs
+var options = {
+    separator: ';'
+};
+app.use("/api/batch", expressBatch(app, options));
+
+// easily handle batched requests with deep field-value pairs
+app.get("/api/climate/", function apiClimateHandler(req, res) {
+    var response = {
+        sunny: false,
+        warm: false
+    };
+
+    // e.g., with a request path of 'api/batch?climate=/api/climate/?sunny=true&warm=true'
+    if (req.query.sunny === 'true' && req.query.warm === 'true') {
+        response.sunny = true;
+        response.warm = true;
+    }
+    res.json(response);
+});
 
 ## Limitations
 * Tested only with Express 4
