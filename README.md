@@ -17,7 +17,7 @@ If you need to perform several different requests to one API simultaneously, you
 
 The handler parses requests, and then invokes the relevant handler for each request (the standard app router is used), collects all the responses and sends them back as a JSON object with sections for each response.
 
-Currently, only routes for GET locations are upported.
+Currently, only routes for GET locations are supported.
 
 ## Example
 

@@ -19,8 +19,8 @@ module.exports = function expressBatch(app, options) {
         // If the separator option exists and the request URL can be parsed, parse any nested field-value pairs
         if (options.separator && query) {
             query = decodeURIComponent(query);
-            var quriesWithPairs = query.split(options.separator);
-            quriesWithPairs.forEach(function(query, i) {
+            var queriesWithPairs = query.split(options.separator);
+            queriesWithPairs.forEach(function(query, i) {
                 requests[query.substring(0,query.indexOf('='))] = query.substring(query.indexOf('=')+1);
             });
         }
