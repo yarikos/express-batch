@@ -1,6 +1,6 @@
 {
   "name": "express-batch",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Middleware for Express that allows for batched API requests.",
   "main": "express-batch.js",
   "scripts": {
