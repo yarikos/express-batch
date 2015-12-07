@@ -344,7 +344,7 @@ describe("request to route for express-batch", function () {
 
         beforeEach(function () {
             var options = {
-                separator: '|'
+                separator: ';'
             };
             app.use("/api/batchNested", expressBatch(app, options));
         });
@@ -376,7 +376,7 @@ describe("request to route for express-batch", function () {
                 });
 
             request(app)
-                .get("/api/batchNested?climate=/api/climate/?sunny=true&warm=true|topography=/api/topography/?hilly=false&rocky=false")
+                .get("/api/batchNested?climate=/api/climate/?sunny=true&warm=true;topography=/api/topography/?hilly=false&rocky=false")
                 .expect({
                     climate: {
                         status: 200,
