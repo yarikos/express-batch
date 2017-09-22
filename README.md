@@ -6,6 +6,8 @@ express-batch
 [![Code Climate][codeclimate-img]][codeclimate-url]
 [![NPM Downloads][downloads-img]][downloads-url]
 [![License][license-img]][license-url]
+[![Known Vulnerabilities][snyk-img]][snyk-url]
+
 
 ## Description
 
@@ -148,3 +150,5 @@ There are similar packages, but which work using real http requests:
 [gitter-url]: https://gitter.im/yarikos/express-batch?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 [bitdeli-img]: https://d2weczhvl823v0.cloudfront.net/yarikos/express-batch/trend.png
 [bitdeli-url]: https://bitdeli.com/free%20%22Bitdeli%20Badge%22
+[snyk-img]: https://snyk.io/test/github/yarikos/express-batch/badge.svg
+[snyk-url]: https://snyk.io/test/github/yarikos/express-batch
